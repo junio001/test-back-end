@@ -32,7 +32,7 @@ A web interface that accepts CNAB file upload, normalizes the data and stores it
 <br/>
 <br/>
 
-## Rotas da aplicação
+## Application routes
 
 ### For doc of API
 ### GET `/api/doc/`  
