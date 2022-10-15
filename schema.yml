@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Financial API
+  version: 1.0.0
+  description: An api that handles text files(CNAB)
+paths:
+  /api/operations/{store_id}/:
+    get:
+      operationId: operations_retrieve
+      parameters:
+      - in: path
+        name: store_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - operations
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/stores/:
+    get:
+      operationId: stores_list
+      tags:
+      - stores
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Store'
+          description: ''
+components:
+  schemas:
+    Store:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 128
+        dono:
+          type: string
+          maxLength: 128
+      required:
+      - dono
+      - id
+      - nome
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
